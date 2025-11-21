@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "phosphor-react": "^1.4.1",
+=======
+>>>>>>> dcf238a6a829eb67e3ac7869bbb8a6b802bfccbc
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

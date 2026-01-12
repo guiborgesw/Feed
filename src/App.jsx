@@ -5,8 +5,48 @@ import { Sidebar } from './components/Sidebar';
 import styles from './App.module.css';
 
 import './global.css';
+import { prerenderToNodeStream } from 'react-dom/static';
 
- export function App() {
+// author: {avatar_url: "", name: "", role: ""}
+// publishedAt: Date
+// content: String
+
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://github.com/guiborgesw.png',
+      name: 'Guilherme Borges',
+      role: 'Web Developer'
+    },
+    content: [
+      { type: 'paragraph', content: 'Fala galeraa 👋'},
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare.'},
+      { type: 'link', content: 'jane.design/doctorcare'},
+    ],
+    publishedAt: new Date('2025-11-03 20:00:00')
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: 'https://github.com/diego3g.png',
+      name: 'Diego Fernandes',
+      role: 'CTO @Rocketseat'
+    },
+    content: [
+      { type: 'paragraph', content: 'Fala galeraa 👋'},
+      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare.'},
+      { type: 'link', content: 'jane.design/doctorcare'},
+    ],
+    publishedAt: new Date('2025-11-10 20:00:00')
+  },
+]
+
+// Iteração
+
+export function App() {
+  console.log(posts)
+
   return (
     <div>
       <Header />
@@ -14,14 +54,15 @@ import './global.css';
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post 
-          author="Guilherme Borges" 
-          content="Lorem ipsum dolor sit amet consectetur, adipisicing elit. Exercitationem esse, et deserunt consequuntur explicabo omnis blanditiis obcaecati reprehenderit quibusdam error nesciunt eius officia eligendi dolores, aut accusantium mollitia quasi facere!" 
-          />
-          <Post 
-            author="Gabriela Lenzi"
-            content="Um texto muito legal"
-          />
+          {posts.map(post => {
+            return (
+              <Post 
+                author={post.author}
+                content={post.content}
+                publishedAt={post.publishedAt}
+              />
+            );
+          })}
         </main>
       </div>
     </div>
